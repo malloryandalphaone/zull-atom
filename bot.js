@@ -58,12 +58,12 @@ client.on('message', message => {
 client.on("message",async msg => {
     var prefix = '!';
     if(msg.content.startsWith(prefix  + "submit")){
-        var channel = msg.guild.channels.find("name", "submissions");
-        if(!channel) return msg.reply("- **i find Channel `submissions`.**`")
+        var channel = msg.guild.channels.find("name", "submit");
+        if(!channel) return msg.reply("- **i find Channel `submit`.**`")
     let em = client.emojis.find(e => e.name === "bot");
     let fltr = m => m.author.id === msg.author.id
     let name = '';
-   await msg.channel.send('- :orange_book:**, Type Your Name?**.').then(e => {
+   await msg.channel.send('- :leaves: **, أكتب اسمك الحقيقي - و أسمك في ماين كرافت.**').then(e => {
 msg.channel.awaitMessages(fltr, {
     time: 600000,
     max: 1
@@ -72,7 +72,7 @@ msg.channel.awaitMessages(fltr, {
     name = co.first().content
     co.first().delete()
     let age = '';
-    e.edit(`- :green_book:**, Type Your Age?**`).then(e => {
+    e.edit(`- :leaves: **, أكتب عمرك.**`).then(e => {
      msg.channel.awaitMessages(fltr, {
          time: 600000,
          max: 1
@@ -81,7 +81,7 @@ msg.channel.awaitMessages(fltr, {
      age = co.first().content
      co.first().delete();
      let from = '';
-     e.edit(`- :closed_book:**, Type Name Of The Game?**`).then(e => {
+     e.edit(`- :leaves: **, أكتب من أين انت.**`).then(e => {
      msg.channel.awaitMessages(fltr, {
          time: 600000,
          max: 1
@@ -89,7 +89,25 @@ msg.channel.awaitMessages(fltr, {
      .then(co => {
       from = co.first().content
       co.first().delete();
-      e.edit("- **Are You Sure On Your Submit?**").then(o => {
+      let tfa3l = '';
+     e.edit(`- :leaves: **, أكتب كم ساعة تتفاعل يومياََ.**`).then(e => {
+     msg.channel.awaitMessages(fltr, {
+         time: 600000,
+         max: 1
+     })
+     .then(co => {
+      tfa3l = co.first().content
+      co.first().delete();
+      let play = '';
+     e.edit(`- :leaves: **, هل ستقوم بوضع الشعار إجابتك بنعم أو لا.**`).then(e => {
+     msg.channel.awaitMessages(fltr, {
+         time: 600000,
+         max: 1
+     })
+     .then(co => {
+      play = co.first().content
+      co.first().delete();
+      e.edit("- **هل أنت متأكد من تقديمك؟**").then(o => {
           o.react("❌")
           .then(() => o.react('✅'))
             .then(() =>o.react('❌'))
@@ -98,23 +116,25 @@ msg.channel.awaitMessages(fltr, {
             let cr1 = o.createReactionCollector(react1, { time: 12000 });
             let cr2 = o.createReactionCollector(react2, { time: 12000 });
             cr2.on("collect", r => {
-                msg.reply("- **Done Your Submite Has Been Cancelled**").then(k => {
+                msg.reply("- **حسناََ, تم إلغاء التقديم بنجاح.**").then(k => {
                     o.delete(2222);
                     k.delete(2222);
                  
                 })
             })
             cr1.on("collect", r => {
-                msg.reply("- **Done Your Submite Has Been Send**").then(b => {
+                msg.reply("- **تم إرسال التقديم بنجاح.**").then(b => {
                     o.delete(2222);
                     b.delete(2222);
                    let emb = new Discord.RichEmbed()
-                   .setTitle("- Submit to Clan :")
-                   .addField("**» Name :**", name)
-                   .addField("**» Age :**", age)
-                   .addField("**» Name Of The Game :**", from)
-                   .addField("**- Submit by :**", msg.author)
-                   .addField("**- ID Account :**", msg.author.id)
+                   //.setTitle("- Submit to Clan :")
+                   .addField("» Name And Name Of the Game :", name)
+                   .addField("» Age :", age)
+                   .addField("» From :", from)
+                   .addField("» Active in the Day :", tfa3l)
+                   .addField("» Question placing logo :", play)
+                   .addField("**- Submit by :**", msg.author, true)
+                   .addField("**- ID Account :**", msg.author.id, true)
                    channel.send(emb);
                 })
                
@@ -131,14 +151,14 @@ msg.channel.awaitMessages(fltr, {
 
 client.on('message',async message => {
   let mention = message.mentions.members.first();
-  let acRoom = client.channels.get('548208534618112020');
+  let acRoom = client.channels.get('554639704163876866');
   let em = client.emojis.find(e => e.name === "no");
-  if(message.content.startsWith(prefix + "Refussssal")) {
-  if(message.guild.id !== '548103774116380682') return;
+  if(message.content.startsWith(prefix + "refusal")) {
+  if(message.guild.id !== '554629230642855937') return;
   if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return;
   if(!mention) return message.reply("- **Mention The member.**");
 
-  acRoom.send(`» ${mention},\n» **Your unAcceptable for The Submit,** ${em}`)
+  acRoom.send(`» ${mention},\n» **Your unAcceptable for The Submit,** :x:`)
   }
 });
  
@@ -147,18 +167,18 @@ client.on('message',async message => {
   let mention = message.mentions.members.first();
   let role = message.content.split(" ").slice(2).join(" ");
   let mySupport = message.guild.roles.find('name',role);
-  let acRoom = client.channels.get('548208534618112020');
+  let acRoom = client.channels.get('554639704163876866');
   let em = client.emojis.find(e => e.name === "yes");
-  if(message.content.startsWith(prefix + "acceptasssnce")) {
-    if(message.guild.id !== '548103774116380682') return;
+  if(message.content.startsWith(prefix + "accept")) {
+    if(message.guild.id !== '554629230642855937') return;
     if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return;
-    if(!mention) return message.reply('- **Mention The member.**');
-    if(!role) return message.reply('- **Type Name Rank.**');
+    if(!mention) return message.reply('- **`!accept @user @role`**');
+    if(!role) return message.reply('- **`@role`**');
     if(!mySupport) return message.reply('- **i Find The Rank.**');
     if(mention.roles.has(mySupport)) return message.reply('- **The Member has a ready have the rank.**');
 
     mention.addRole(mySupport).then(() => {
-      acRoom.send(`» ${mention},\n» **Your Acceptable for The Submit,** ${em}`);
+      acRoom.send(`» ${mention},\n» **Your Acceptable for The Submit,** :white_check_mark:`);
     });
   }
 });
