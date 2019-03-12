@@ -145,7 +145,6 @@ msg.channel.awaitMessages(fltr, {
      })
     })
 })
-   })
 
 });
 
