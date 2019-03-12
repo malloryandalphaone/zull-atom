@@ -7,7 +7,7 @@ const ms = require("ms");
 const wait = require('util').promisify(setTimeout);
 
 client.on("ready", () => {
-client.user.setStatus('dnd');
+client.user.setStatus('idle');
 client.user.setGame("- Submit.", "https://www.twitch.tv/idk");
   console.log("Reeebel | Logged in! Server count: ${client.guilds.size}");
  // client.user.setActivity("Royal Orders.",{type: 'WATCHING'});
