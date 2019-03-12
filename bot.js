@@ -147,7 +147,6 @@ msg.channel.awaitMessages(fltr, {
 })
    })
      })
-)
 });
 
 client.on('message',async message => {
